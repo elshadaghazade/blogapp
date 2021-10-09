@@ -1,0 +1,18 @@
+Article
+---
+id integer unsinged primary key auto_increment,
+title varchar(255),
+slug - varchar(255) unique,
+content - text,
+publish_date - datetime,
+createdAt,
+updatedAt
+
+
+
+Comment (paranoid)
+---
+id integer unsigned primary key auto_increment,
+full_name varchar(120)
+comment varchar(1000)
+createdAt,
