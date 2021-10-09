@@ -1,0 +1,51 @@
+<div class="container">
+
+    {{#if errorText}}
+      <div class="alert alert-danger">{{errorText}}</div>
+    {{/if}}
+    
+    <h1 class="text-center">Create Articles</h1>
+<form method="post">
+  <div class="mb-3">
+    <input type="text" class="form-control" placeholder="Title" name="title" id="title" value="{{title}}">
+  </div>
+  <div class="mb-3">
+    <input type="text" class="form-control" name="slug" placeholder="Slug" id="slug" value="{{slug}}">
+  </div>
+  <div class="mb-3">
+      <textarea name="content" class="form-control" id="content"  rows="5">{{content}}</textarea>
+  </div>
+    <div class="mb-3">
+    <input type="date" class="form-control" name="publishdate" placeholder="publishdate" value="{{publishdate}}">
+  </div>  
+  <div class="mb-3">
+    <input type="time" class="form-control" name="publishtime" placeholder="publishTime" value="{{publishtime}}">
+  </div>
+  <button type="submit" class="btn btn-primary form-control">Submit</button>
+</form>
+</div>
+
+<script>
+    $('#title').on('input', function () {
+        let title = this.value.toLowerCase();
+        title = title.replace(/\s+/g, '-');
+        // ----------
+        title = title.replace(/ş/gu, 's');
+        title = title.replace(/ç/gu, 'c');
+        title = title.replace(/ı/gu, 'i');
+        title = title.replace(/ö/gu, 'o');
+        title = title.replace(/ğ/gu, 'g');
+        title = title.replace(/ə/gu, 'e');
+        // ----------
+        title = title.replace(/[^\w\-]+/g, '');
+        title = title.replace(/\-+/g, '-');
+        $('#slug').val(title.toLowerCase());
+    });
+
+    tinymce.init({
+      selector: '#content',
+      plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak code',
+      toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | code',
+      toolbar_mode: 'floating',
+   });
+</script>
