@@ -45,6 +45,42 @@ app.get('/', async (req, res) => {
     });
 });
 
+app.get('/errors/:errorCode', async (req, res) => {
+    let page = 'error';
+
+    if (req.params.errorCode == 500) {
+        page += 500;
+    } else if (req.params.errorCode == 404) {
+        page += 404;
+    } else if (req.params.errorCode == 400) {
+        page += 400;
+    } else {
+        page += 'Unknown'
+    }
+
+    res.status(req.params.errorCode).render('errors/' + page);
+});
+
+
+app.get('/news/:slug', async (req, res) => {
+    const {slug} = req.params;
+
+    try {
+        const article = await Article.findOne({
+            where: {
+                slug
+            },
+            raw: true
+        });
+
+        res.render('article', {
+            article
+        });
+    } catch (err) {
+        res.redirect('/errors/500');
+    }
+});
+
 
 app.get('/create', async (req, res) => {
     res.render('create');

@@ -1,0 +1,39 @@
+<div class="container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Ana səhifə</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{article.title}}</li>
+        </ol>
+    </nav>
+
+    <h1>{{article.title}}</h1>
+    <time>{{article.publishDate}} {{article.publishTime}}</time>
+    {{{article.content}}}
+    <hr>
+
+    <form method="post">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label id="full_name">Ad və soyadınız</label>
+                    <input type="text" name="full_name" id="full_name" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label id="comment">Şərhinizi yazın</label>
+                    <textarea name="comment" id="comment" class="form-control" rows="5"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary form-control">Göndər</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
