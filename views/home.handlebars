@@ -1,0 +1,25 @@
+{{#if error }}
+    <div class="alert alert-danger">{{error}}</div>
+{{/if}}
+
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="text-center">Məqalələr</h1>
+    </div>
+
+    {{#each data}}
+        <div class="row">
+            <div class="col-12">
+                <h2><a href="">{{this.title}}</a></h2>
+                <time>{{this.publishDate}} {{this.publishTime}}</time>
+                <p>
+                    {{#shortcontent}}
+                        {{#teqleritemizle}}
+                            {{{this.content}}}
+                        {{/teqleritemizle}}
+                    {{/shortcontent}}
+                    </p>
+            </div>
+        </div>
+    {{/each}}
+</div>
